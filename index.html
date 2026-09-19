@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rafi Ahmed — Creator / Software Engineer</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root{
+  --black:#0b0b0b;
+  --cream:#f2f0e8;
+  --lime:#c7ff32;
+  --orange:#ff6933;
+  --line:rgba(11,11,11,.18);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--black);font-family:"Space Grotesk",sans-serif;cursor:none}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--black);color:var(--lime)}
+.cursor{position:fixed;z-index:99;width:18px;height:18px;border:2px solid var(--black);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);mix-blend-mode:multiply;transition:width .2s,height .2s,background .2s}
+.cursor.big{width:64px;height:64px;background:var(--lime);border-color:var(--lime);mix-blend-mode:normal}
+.noise{position:fixed;inset:0;pointer-events:none;opacity:.055;z-index:10;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E")}
+header{position:fixed;top:0;left:0;right:0;z-index:20;padding:22px 4vw;display:flex;justify-content:space-between;align-items:center;mix-blend-mode:multiply}
+.logo{font-weight:700;letter-spacing:-.04em}.nav{display:flex;gap:28px;font:12px "DM Mono",monospace;text-transform:uppercase}
+.hero{min-height:100vh;padding:140px 4vw 50px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.kicker{font:12px "DM Mono",monospace;text-transform:uppercase;display:flex;gap:14px;align-items:center}
+.dot{width:8px;height:8px;background:var(--orange);border-radius:50%;display:inline-block}
+h1{font-size:clamp(80px,16vw,250px);line-height:.78;letter-spacing:-.09em;margin:0;font-weight:700}
+.hero h1 span{display:block;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.hero h1 span:hover{transform:translateX(3vw);color:var(--orange)}
+.hero-bottom{display:flex;justify-content:space-between;align-items:end;gap:30px}
+.intro{max-width:520px;font-size:20px;line-height:1.25}
+.intro b{background:var(--lime);padding:2px 7px}
+.scroll{font:11px "DM Mono",monospace;text-transform:uppercase}
+.marquee{background:var(--black);color:var(--lime);overflow:hidden;border-block:2px solid var(--black);white-space:nowrap}
+.track{display:inline-flex;animation:marquee 18s linear infinite;font-size:28px;font-weight:600;padding:12px 0}
+.track span{padding:0 25px}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.section{padding:130px 4vw;border-bottom:1px solid var(--line)}
+.section-head{display:flex;justify-content:space-between;gap:30px;margin-bottom:70px}
+.label{font:12px "DM Mono",monospace;text-transform:uppercase}
+.big-copy{font-size:clamp(42px,7vw,105px);line-height:.9;letter-spacing:-.065em;max-width:1050px}
+.big-copy em{font-style:normal;color:var(--orange)}
+.identities{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--black)}
+.identity{min-height:520px;padding:40px;background:var(--cream);display:flex;flex-direction:column;justify-content:space-between;transition:.45s}
+.identity:hover{background:var(--lime);transform:translateY(-8px)}
+.identity h2{font-size:clamp(50px,7vw,100px);line-height:.82;letter-spacing:-.07em;margin:0}
+.identity p{font-size:18px;max-width:430px;line-height:1.4}
+.num{font:12px "DM Mono",monospace}
+.timeline{border-top:2px solid var(--black)}
+.job{display:grid;grid-template-columns:18% 1fr 20%;gap:30px;padding:32px 0;border-bottom:1px solid var(--line);transition:.3s}
+.job:hover{padding-left:20px;background:var(--lime)}
+.job .year,.job .company{font:12px "DM Mono",monospace;text-transform:uppercase}
+.job h3{margin:0;font-size:32px;letter-spacing:-.04em}
+.job p{margin:7px 0 0;opacity:.65}
+.work {
+    min-height: 430px;
+    background: var(--black);
+    color: var(--cream);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    transition: transform .35s ease;
+}
+
+.work:hover {
+    transform: translateY(-8px);
+}
+
+.work:nth-child(2) {
+    background: var(--orange);
+    color: var(--black);
+}
+
+.work:nth-child(3) {
+    background: var(--lime);
+    color: var(--black);
+}
+
+.work:nth-child(4) {
+    background: var(--black);
+    color: var(--cream);
+}
+
+.work h3 {
+    font-size: clamp(42px, 5.5vw, 78px);
+    line-height: .8;
+    letter-spacing: -.07em;
+    margin: 0;
+}
+
+.work p {
+    max-width: 420px;
+    font-size: 16px;
+    line-height: 1.35;
+    margin: 25px 0 0;
+}
+
+.project-link {
+    font: 11px "DM Mono", monospace;
+    letter-spacing: .04em;
+    margin-top: 25px;
+}
+.links{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--black)}
+.link{background:var(--cream);padding:35px;min-height:190px;display:flex;flex-direction:column;justify-content:space-between;transition:.35s}
+.link:hover{background:var(--lime)}
+.link h3{font-size:42px;margin:0;letter-spacing:-.06em}
+.link small{font:11px "DM Mono",monospace;text-transform:uppercase}
+footer{background:var(--black);color:var(--cream);padding:80px 4vw 35px}
+.footer-title{font-size:clamp(65px,13vw,190px);line-height:.78;letter-spacing:-.09em;margin:0 0 100px}
+.footer-row{display:flex;justify-content:space-between;font:11px "DM Mono",monospace;text-transform:uppercase}
+.reveal{opacity:0;transform:translateY(35px);transition:opacity .8s,transform .8s}
+.reveal.show{opacity:1;transform:none}
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    padding: 22px 4vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition:
+        padding .4s ease,
+        background .4s ease,
+        border .4s ease,
+        box-shadow .4s ease;
+}
+
+header.scrolled {
+    top: 14px;
+    left: 4vw;
+    right: 4vw;
+    padding: 13px 18px;
+
+    background: rgba(242, 240, 232, 0.72);
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+
+    border: 1px solid rgba(11, 11, 11, 0.12);
+    border-radius: 12px;
+
+    box-shadow:
+        0 8px 30px rgba(11, 11, 11, 0.06);
+}
+@media(max-width:760px){
+ body{cursor:auto}.cursor{display:none}
+ .nav{gap:12px}.nav a:nth-child(2){display:none}
+ .hero{padding-top:110px}.hero-bottom{display:block}.scroll{margin-top:35px}
+ .identities,.work-grid,.links{grid-template-columns:1fr}
+ .identity{min-height:390px}.job{grid-template-columns:1fr;gap:8px}
+ .job h3{font-size:28px}.job .company{order:3}
+ .section{padding:90px 5vw}
+}
+</style>
+</head>
+<body>
+<div class="noise"></div><div class="cursor"></div>
+
+<header>
+  <a class="logo" href="#">RAFI AHMED.</a>
+  <nav class="nav">
+    <a href="#work">work</a><a href="#experience">experience</a><a href="#contact">contact</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero">
+  <div class="kicker"><span class="dot"></span> Creator / Software Engineer / Independent Builder</div>
+  <h1><span>I BUILD</span><span>THINGS.</span></h1>
+  <div class="hero-bottom">
+    <div class="intro">I solve <b>business problems</b> with code, product thinking, and an unreasonable curiosity for how things could work better.</div>
+    <div class="scroll">↓ keep scrolling</div>
+  </div>
+</section>
+
+<div class="marquee"><div class="track"><span>CODE</span><span>CREATE</span><span>SHIP</span><span>BREAK</span><span>LEARN</span><span>REPEAT</span><span>CODE</span><span>CREATE</span><span>SHIP</span><span>BREAK</span><span>LEARN</span><span>REPEAT</span></div></div>
+
+<section class="section reveal">
+  <div class="section-head"><span class="label">01 / Manifesto</span><span class="label">Not a résumé.</span></div>
+  <div class="big-copy">I like taking messy problems, turning them into <em>clear systems</em>, and shipping software people actually use.</div>
+</section>
+
+<section class="section reveal">
+  <div class="section-head"><span class="label">02 / Two modes</span></div>
+  <div class="identities">
+    <article class="identity">
+      <span class="num">01 — CREATOR</span>
+      <h2>MAKE<br>NOISE.</h2>
+      <p>Open-source tools, experiments, products, interfaces and ideas. I build because there are things I want to exist.</p>
+    </article>
+    <article class="identity">
+      <span class="num">02 — ENGINEER</span>
+      <h2>MAKE<br>IT WORK.</h2>
+      <p>Product-minded engineering across WordPress, PHP, JavaScript, React, databases and the systems underneath the UI.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section reveal" id="experience">
+  <div class="section-head"><span class="label">03 / Experience</span><span class="label">Selected chapters</span></div>
+  <div class="timeline">
+    <div class="job"><span class="year">2023 — 2026</span><div><h3>Awesome Motive</h3><p>Software engineering · WordPress products · product systems</p></div><span class="company">ENGINEERING</span></div>
+    <div class="job"><span class="year">2020 — 2023</span><div><h3>WPManageNinja</h3><p>Product engineering · WordPress ecosystem · SaaS-style product development</p></div><span class="company">ENGINEERING</span></div>
+    <div class="job"><span class="year">/2020/</span><div><h3>Solution Flows</h3><p>Software engineering · PHP Applications · Custom WordPress, Laravel & Angular product development</p></div><span class="company">ENGINEERING</span></div>
+    <div class="job"><span class="year">2017-2019</span><div><h3>TechLance Lab</h3><p>Software engineering · Web Applications · {Python[Django, Flask], PHP[Laravel], JS[Angular]} Application developement</p></div><span class="company">ENGINEERING</span></div>
+    <div class="job"><span class="year">2015-2017</span><div><h3>Upwork</h3><p>Freelance Developer · Web related works · {Python[Django, Flask], PHP[Laravel, WordPress], JS[Angular, jQuery, Vanilla]} Application developement</p></div><span class="company">ENGINEERING</span></div>
+  </div>
+</section>
+
+<section class="section reveal" id="work">
+  <div class="section-head">
+    <span class="label">04 / Open Source</span>
+    <span class="label">Things I've built</span>
+  </div>
+
+  <div class="work-grid">
+
+    <a
+      class="work"
+      href="https://github.com/rafiahmedd/react-mail-editor"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <small>01 / React · Open Source</small>
+      <h3>REACT<br>MAIL<br>EDITOR</h3>
+      <p>
+        A customizable drag-and-drop email builder for React,
+        built for real-world email workflows.
+      </p>
+      <span class="project-link">VIEW PROJECT ↗</span>
+    </a>
+
+    <a
+      class="work"
+      href="https://github.com/rafiahmedd/wp-vite"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <small>02 / WordPress · Open Source</small>
+      <h3>WP<br>VITE</h3>
+      <p>
+        Vite-powered asset bundling and development workflow
+        built specifically for WordPress.
+      </p>
+      <span class="project-link">VIEW PROJECT ↗</span>
+    </a>
+
+    <a
+      class="work"
+      href="https://github.com/rafiahmedd/wp-trace"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <small>03 / WordPress · Developer Tool</small>
+      <h3>WP<br>TRACE</h3>
+      <p>
+        Runtime tracing and causal execution analysis for
+        understanding why WordPress does what it does.
+      </p>
+      <span class="project-link">VIEW PROJECT ↗</span>
+    </a>
+
+    <a
+      class="work"
+      href="https://github.com/rafiahmedd/wp-rest-tracer"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <small>04 / WordPress · Developer Tool</small>
+      <h3>WP REST<br>TRACER</h3>
+      <p>
+        Inspect WordPress REST requests with hooks, SQL,
+        outbound HTTP, timings and visual execution traces.
+      </p>
+      <span class="project-link">VIEW PROJECT ↗</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- <section class="section reveal" id="work">
+  <div class="section-head"><span class="label">04 / Things I make</span></div>
+  <div class="work-grid">
+    <a class="work" href="#" target="_blank"><small>Open source / 01</small><h3>WP<br>VITE</h3></a>
+    <a class="work" href="#" target="_blank"><small>Open source / 02</small><h3>REACT<br>MAIL EDITOR</h3></a>
+    <a class="work" href="#" target="_blank"><small>Independent / 03</small><h3>THE<br>NEXT<br>THING.</h3></a>
+    <div class="work"><small>Currently building</small><h3>MORE<br>SOON →</h3></div>
+  </div>
+</section> -->
+
+<section class="section reveal">
+  <div class="section-head"><span class="label">05 / Find me</span></div>
+  <div class="links">
+    <a class="link" href="https://github.com/rafiahmedd" target="_blank"><small>01 / Code</small><h3>GitHub ↗</h3></a>
+    <a class="link" href="https://www.linkedin.com/in/rafiahmedd" target="_blank"><small>02 / Career</small><h3>LinkedIn ↗</h3></a>
+    <a class="link" href="https://x.com/rafiahmedd" target="_blank"><small>03 / Thoughts</small><h3>X ↗</h3></a>
+  </div>
+</section>
+</main>
+
+<footer id="contact">
+  <p class="label">Have a problem worth solving?</p>
+  <h2 class="footer-title">LET'S<br>BUILD.</h2>
+  <div class="footer-row"><span>Rafi Ahmed © 2026</span><span>Creator + Software Engineer</span><a href="mailto:hello.rafiahmed@proton.me">Say hello ↗</a></div>
+</footer>
+
+<script>
+const cursor=document.querySelector('.cursor');
+window.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'});
+document.querySelectorAll('a,.identity,.work').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cursor.classList.add('big'));
+  el.addEventListener('mouseleave',()=>cursor.classList.remove('big'));
+});
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+const header = document.querySelector('header');
+
+window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 80);
+});
+
+</script>
+</body>
+</html>
