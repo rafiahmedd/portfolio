@@ -27,13 +27,46 @@ header{position:fixed;top:0;left:0;right:0;z-index:20;padding:22px 4vw;display:f
 .hero{min-height:100vh;padding:140px 4vw 50px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
 .kicker{font:12px "DM Mono",monospace;text-transform:uppercase;display:flex;gap:14px;align-items:center}
 .dot{width:8px;height:8px;background:var(--orange);border-radius:50%;display:inline-block}
-h1{font-size:clamp(80px,16vw,250px);line-height:.78;letter-spacing:-.09em;margin:0;font-weight:700}
+h1{font-size:clamp(80px,16vw,250px);line-height:.78;letter-spacing:-.09em;margin:0;font-weight:700;position:relative;z-index:2}
 .hero h1 span{display:block;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
 .hero h1 span:hover{transform:translateX(3vw);color:var(--orange)}
-.hero-bottom{display:flex;justify-content:space-between;align-items:end;gap:30px}
+.hero-bottom{display:flex;justify-content:space-between;align-items:end;gap:30px;position:relative;z-index:2}
 .intro{max-width:520px;font-size:20px;line-height:1.25}
 .intro b{background:var(--lime);padding:2px 7px}
 .scroll{font:11px "DM Mono",monospace;text-transform:uppercase}
+.status{display:inline-flex;align-items:center;gap:9px;font:11px "DM Mono",monospace;text-transform:uppercase;letter-spacing:.05em;background:var(--lime);border:1.5px solid var(--black);border-radius:999px;padding:8px 15px;width:max-content;margin-bottom:20px}
+.pulse{width:8px;height:8px;border-radius:50%;background:var(--orange);animation:pulse 1.7s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,105,51,.55)}70%{box-shadow:0 0 0 9px rgba(255,105,51,0)}100%{box-shadow:0 0 0 0 rgba(255,105,51,0)}}
+.stats{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:24px;font:11px "DM Mono",monospace;text-transform:uppercase;opacity:.8}
+.stats b{color:var(--orange);font-weight:500}
+.portrait{position:absolute;top:120px;right:4vw;height:min(58vh,540px);aspect-ratio:2/3;margin:0;background:var(--black);border:2px solid var(--black);display:flex;flex-direction:column;transform:rotate(2.4deg);z-index:1;box-shadow:16px 16px 0 var(--orange);transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s cubic-bezier(.2,.8,.2,1)}
+.portrait:hover{transform:rotate(0deg) translate(-6px,-6px);box-shadow:26px 26px 0 var(--orange)}
+.portrait::after{content:'';position:absolute;inset:-16px;pointer-events:none;background:
+ linear-gradient(var(--black),var(--black)) left top/26px 3px,
+ linear-gradient(var(--black),var(--black)) left top/3px 26px,
+ linear-gradient(var(--black),var(--black)) right top/26px 3px,
+ linear-gradient(var(--black),var(--black)) right top/3px 26px,
+ linear-gradient(var(--black),var(--black)) left bottom/26px 3px,
+ linear-gradient(var(--black),var(--black)) left bottom/3px 26px,
+ linear-gradient(var(--black),var(--black)) right bottom/26px 3px,
+ linear-gradient(var(--black),var(--black)) right bottom/3px 26px;
+background-repeat:no-repeat;transition:inset .4s cubic-bezier(.2,.8,.2,1)}
+.portrait:hover::after{inset:-9px}
+.portrait img{display:block;width:100%;flex:1;min-height:0;object-fit:cover;object-position:top center}
+.portrait figcaption{height:36px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 12px;font:10px "DM Mono",monospace;letter-spacing:.16em;color:var(--cream);text-transform:uppercase}
+.portrait figcaption span:last-child{color:var(--lime)}
+.portrait-badge{position:absolute;left:-16px;top:28px;z-index:2;background:var(--lime);border:1.5px solid var(--black);padding:12px 5px;font:10px "DM Mono",monospace;letter-spacing:.18em;writing-mode:vertical-rl;transform:rotate(180deg);text-transform:uppercase}
+@keyframes rise{from{opacity:0;transform:translateY(38px)}}
+.hero .kicker{animation:rise .8s cubic-bezier(.2,.8,.2,1) .05s backwards}
+.hero h1 span{animation:rise .8s cubic-bezier(.2,.8,.2,1) backwards}
+.hero h1 span:first-child{animation-delay:.12s}
+.hero h1 span:nth-child(2){animation-delay:.2s}
+.portrait{animation:rise .9s cubic-bezier(.2,.8,.2,1) .36s backwards}
+.hero .status{animation:rise .8s cubic-bezier(.2,.8,.2,1) .28s backwards}
+.hero .intro{animation:rise .8s cubic-bezier(.2,.8,.2,1) .36s backwards}
+.hero .stats{animation:rise .8s cubic-bezier(.2,.8,.2,1) .44s backwards}
+.hero .scroll{animation:rise .8s cubic-bezier(.2,.8,.2,1) .52s backwards}
+.marquee:hover .track{animation-play-state:paused}
 .marquee{background:var(--black);color:var(--lime);overflow:hidden;border-block:2px solid var(--black);white-space:nowrap}
 .track{display:inline-flex;animation:marquee 18s linear infinite;font-size:28px;font-weight:600;padding:12px 0}
 .track span{padding:0 25px}
@@ -153,11 +186,18 @@ header.scrolled {
  body{cursor:auto}.cursor{display:none}
  .nav{gap:12px}.nav a:nth-child(2){display:none}
  .hero{padding-top:110px}.hero-bottom{display:block}.scroll{margin-top:35px}
+ .portrait{position:static;height:auto;width:min(66vw,320px);margin:42px auto 0;transform:rotate(1.6deg);box-shadow:10px 10px 0 var(--orange)}
+ .portrait:hover{box-shadow:16px 16px 0 var(--orange)}
+ .portrait::after{inset:-12px}
+ .portrait:hover::after{inset:-8px}
+ .portrait img{flex:none;height:auto;aspect-ratio:2/3}
+ .portrait-badge{left:-14px;top:24px}
  .identities,.work-grid,.links{grid-template-columns:1fr}
  .identity{min-height:390px}.job{grid-template-columns:1fr;gap:8px}
  .job h3{font-size:28px}.job .company{order:3}
  .section{padding:90px 5vw}
 }
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important}}
 </style>
 </head>
 <body>
@@ -174,8 +214,17 @@ header.scrolled {
 <section class="hero">
   <div class="kicker"><span class="dot"></span> Creator / Software Engineer / Independent Builder</div>
   <h1><span>I BUILD</span><span>THINGS.</span></h1>
+  <figure class="portrait">
+    <span class="portrait-badge">Rafi ✦ since 2015</span>
+    <img src="rafi.png" alt="Portrait of Rafi Ahmed" width="1066" height="1600">
+    <figcaption><span>Creator × Engineer</span><span>FIG. 01</span></figcaption>
+  </figure>
   <div class="hero-bottom">
-    <div class="intro">I solve <b>business problems</b> with code, product thinking, and an unreasonable curiosity for how things could work better.</div>
+    <div>
+      <div class="status"><span class="pulse"></span>Open to connect</div>
+      <div class="intro">I solve <b>business problems</b> with code, product thinking, and an unreasonable curiosity for how things could work better.</div>
+      <div class="stats"><span><b>11</b> yrs shipping</span><span><b>4</b> open-source tools</span><span><b>∞</b> curiosity</span></div>
+    </div>
     <div class="scroll">↓ keep scrolling</div>
   </div>
 </section>
@@ -314,7 +363,7 @@ header.scrolled {
 <script>
 const cursor=document.querySelector('.cursor');
 window.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'});
-document.querySelectorAll('a,.identity,.work').forEach(el=>{
+document.querySelectorAll('a,.identity,.work,.portrait').forEach(el=>{
   el.addEventListener('mouseenter',()=>cursor.classList.add('big'));
   el.addEventListener('mouseleave',()=>cursor.classList.remove('big'));
 });
