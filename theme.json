@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"settings": {
+		"color": {
+			"defaultPalette": false,
+			"defaultGradients": false,
+			"defaultDuotone": false,
+			"palette": [
+				{ "slug": "black", "name": "Black", "color": "#0b0b0b" },
+				{ "slug": "cream", "name": "Cream", "color": "#f2f0e8" },
+				{ "slug": "lime", "name": "Lime", "color": "#c7ff32" },
+				{ "slug": "orange", "name": "Orange", "color": "#ff6933" }
+			]
+		},
+		"typography": {
+			"fontFamilies": [
+				{ "slug": "grotesk", "name": "Space Grotesk", "fontFamily": "\"Space Grotesk\", sans-serif" },
+				{ "slug": "mono", "name": "DM Mono", "fontFamily": "\"DM Mono\", monospace" }
+			]
+		},
+		"layout": {
+			"contentSize": "760px",
+			"wideSize": "1100px"
+		}
+	},
+	"styles": {
+		"elements": {
+			"link": {
+				"color": { "text": "inherit" },
+				"typography": { "textDecoration": "none" }
+			}
+		}
+	},
+	"templateParts": [
+		{ "name": "header", "area": "header", "title": "Header" },
+		{ "name": "footer", "area": "footer", "title": "Footer" }
+	]
+}
